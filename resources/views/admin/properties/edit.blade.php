@@ -12,6 +12,8 @@
                         <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
                         <li class="separator icon-angle-right icon-notext"></li>
                         <li><a href="{{ route('admin.properties.index') }}">Imóveis</a></li>
+                        <li class="separator icon-angle-right icon-notext"></li>
+                        <li><a href="{{ route('admin.properties.create') }}" class='text-orange'>Novo Imóvel</a></li>
                     </ul>
                 </nav>
             </div>

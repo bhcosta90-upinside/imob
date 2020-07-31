@@ -8,9 +8,11 @@
         <div class="dash_content_app_header_actions">
             <nav class="dash_content_app_breadcrumb">
                 <ul>
-                    <li><a href="{{ route("admin.home")}}">Dashboard</a></li>
+                    <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
                     <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="{{ route("admin.properties.index")}}">Imóveis</a></li>
+                    <li><a href="{{ route('admin.properties.index') }}">Imóveis</a></li>
+                    <li class="separator icon-angle-right icon-notext"></li>
+                    <li><a href="{{ route('admin.properties.create') }}" class='text-orange'>Novo Imóvel</a></li>
                 </ul>
             </nav>
         </div>

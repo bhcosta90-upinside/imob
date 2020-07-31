@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 
 class ContractController extends Controller
@@ -14,7 +15,7 @@ class ContractController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.contracts.index');
     }
 
     /**
@@ -24,7 +25,10 @@ class ContractController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.contracts.create', [
+            'lessors' => User::lessors()->get(),
+            'lessees' => User::lesseess()->get(),
+        ]);
     }
 
     /**
@@ -57,7 +61,7 @@ class ContractController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.contracts.edit');
     }
 
     /**
@@ -81,5 +85,16 @@ class ContractController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getDataCompanies(Request $request)
+    {
+        $companies = User::find($request->user)->companies()->select(['id', 'social_name', 'document_company'])->get()->toArray();
+        $properties = $request->name == 'owner' ? User::find($request->user)->properties->toArray() : [];
+
+        return response()->json([
+            "companies" => $companies,
+            "properties" => $properties,
+        ]);
     }
 }

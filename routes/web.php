@@ -53,6 +53,8 @@ Route::group([
         /**
          * Contratos
          */
+        Route::post('/contracts/get-data-companies', 'ContractController@getDataCompanies')->name('contracts.getDataCompanies');
+        Route::post('/contracts/get-data-property', 'ContractController@getDataProperty')->name('contracts.getDataProperty');
         Route::resource('contracts', 'ContractController');
     });
 

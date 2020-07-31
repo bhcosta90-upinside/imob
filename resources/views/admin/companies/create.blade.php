@@ -14,7 +14,7 @@
                     <li class="separator icon-angle-right icon-notext"></li>
                     <li><a href="{{ route('admin.companies.index') }}">Empresas</a></li>
                     <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="{{ route('admin.companies.create') }}" class="text-orange">Nova Empresa</a></li>
+                    <li><a class='text-orange' href="{{ route('admin.companies.create') }}">Nova Empresa</a></li>
                 </ul>
             </nav>
         </div>

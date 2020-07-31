@@ -71,7 +71,7 @@ class CompanyController extends Controller
     public function edit(Company $company)
     {
         return view('admin.companies.edit', compact('company') + [
-            "users" => $this->getUsers(null),
+            "users" => $this->getUsers(),
         ]);
     }
 
@@ -105,7 +105,7 @@ class CompanyController extends Controller
         //
     }
 
-    private function getUsers(?int $user)
+    private function getUsers(?int $user = null)
     {
         if($user) {
             return User::where('id', $user)->get();

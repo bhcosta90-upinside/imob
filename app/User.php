@@ -4,6 +4,7 @@ namespace App;
 
 use App\Support\Cropper;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
@@ -191,6 +192,16 @@ class User extends Authenticatable
     public function properties()
     {
         return $this->hasMany(Property::class, 'user_id', 'id');
+    }
+
+    public function scopeLessors(Builder $builder)
+    {
+        return $builder->where('lessor', true);
+    }
+
+    public function scopeLesseess(Builder $builder)
+    {
+        return $builder->where('lessee', true);
     }
 
     private function convertStringToDate(?string $value, $format="d/m/Y"){

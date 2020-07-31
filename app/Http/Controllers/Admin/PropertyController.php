@@ -87,7 +87,7 @@ class PropertyController extends Controller
     public function edit(Property $property)
     {
         return view('admin.properties.edit', compact('property') + [
-            "users" => $this->getUsers(null),
+            "users" => $this->getUsers(),
         ]); 
     }
 
@@ -186,7 +186,7 @@ class PropertyController extends Controller
         return response()->json($json);
     }
 
-    private function getUsers(?int $user)
+    private function getUsers(?int $user = null)
     {
         if($user) {
             return User::where('id', $user)->get();
