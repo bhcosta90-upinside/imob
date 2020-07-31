@@ -8,24 +8,19 @@
             <div class="dash_content_app_header_actions">
                 <nav class="dash_content_app_breadcrumb">
                     <ul>
-                        <li><a href="">Dashboard</a></li>
+                        <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
                         <li class="separator icon-angle-right icon-notext"></li>
-                        <li><a href="">Clientes</a></li>
+                        <li><a href="{{ route('admin.users.index') }}">Clientes</a></li>
                         <li class="separator icon-angle-right icon-notext"></li>
-                        <li><a href="" class="text-orange">Novo Cliente</a></li>
+                        <li><a href="{{ route('admin.users.create') }}" class="text-orange">Novo Cliente</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
 
         <div class="dash_content_app_box">
-            @if($errors->all())
-                @foreach($errors->all() as $erro)
-                    <x-message color="orange">
-                        {{$erro}}
-                    </x-message>
-                @endforeach
-            @endif
+            @include("admin.includes.message")
+            
             <div class="nav">
                 <ul class="nav_tabs">
                     <li class="nav_tabs_item">

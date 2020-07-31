@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
@@ -23,6 +24,14 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route('user');
+
+        if ($id instanceof User) {
+            $id = $id->id;
+        } else {
+            $id = "NULL";
+        }
+
         $typeCommunion = [
             "Comunhão Universal de Bens",
             "Comunhão Parcial de Bens",
@@ -33,7 +42,7 @@ class UserRequest extends FormRequest
         $rules  = [
             'name' => ['required', 'max:191', 'min:3'],
             'genre' => ['required', 'in:male,female,other'],
-            'document' => ['required', 'min:11', 'max:14'],
+            'document' => ['required', 'min:11', 'max:14', 'unique:users,document,{$id},id'],
             'document_secondary' => ['required', 'min:8', 'max:12'],
             'document_secondary_complement' => ['required'],
             'date_of_birth' => ['required', 'date_format:d/m/Y'],
@@ -60,8 +69,7 @@ class UserRequest extends FormRequest
             'cell' => ['required', 'max:20'],
 
             #Access
-            'email' => ['required', 'email', 'max:191', 'unique:users'],
-            'password' => ['required', 'max:20', 'min:6'],
+            'email' => ['required', 'email', 'max:191', "unique:users,email,{$id},id"],
 
             #Spouse
             'type_of_communion' => [
@@ -85,6 +93,10 @@ class UserRequest extends FormRequest
             $rules["spouse_document"] += ['min:8'];
             $rules["spouse_document_secondary"] += ['min:8'];
             $rules["spouse_date_of_birth"] += ['date_format:d/m/Y'];
+        }
+
+        if($id == null ){
+            $rules += ['password' => ['required', 'max:20', 'min:6']];
         }
 
         return $rules;

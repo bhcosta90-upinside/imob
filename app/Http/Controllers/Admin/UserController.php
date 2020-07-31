@@ -40,7 +40,18 @@ class UserController extends Controller
         $user = new User();
         $user->fill($request->all());
 
+        if (!empty($request->file('cover'))) {
+            $user->cover = (string) $request->file('cover')->store('user');
+        }
+
         $userCreated = User::create($request->all());
+
+        if(!$userCreated){
+            return redirect()->back()->withInput()->withErrors();
+        }
+
+        return redirect()->route('admin.users.create')
+            ->with(['color' => 'green', 'message' => 'Cliente inserido com sucesso!']);
     }
 
     /**

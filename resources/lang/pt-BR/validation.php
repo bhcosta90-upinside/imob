@@ -182,6 +182,7 @@ return [
         'title' => 'título',
         'username' => 'usuário',
         'year' => 'ano',
+        'email' => 'e-mail',
 
         #Person
         'document' => "CPF",
@@ -195,6 +196,7 @@ return [
         "company_work" => "empresa",
 
         #Address
+        "number" => "número",
         "zipcode" => "CEP",
         "street" => "rua",
         "neighborhood" => "bairro",
@@ -211,6 +213,7 @@ return [
         "spouse_occupation" => "profissão do cônjuge",
         "spouse_income" => "renda do cônjuge",
         "spouse_company_work" => "empresa do cônjuge",
+        "number" => "número"
     ],
 
 ];
