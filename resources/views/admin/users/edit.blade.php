@@ -407,7 +407,7 @@
 
                                 <div class="app_collapse_content">
 
-                                    {{-- <div class="companies_list">
+                                    <div class="companies_list">
                                         @if($user->companies()->get())
                                             @foreach($user->companies()->get() as $company)
                                                 <div class="companies_list_item mb-2">
@@ -429,9 +429,9 @@
                                     </div>
 
                                     <p class="text-right">
-                                        <a href="{{ route('admin.companies.create', ['user' => $user->id]) }}"
+                                        <a href="{{ route('admin.companies.create', ['user_id' => $user->id]) }}"
                                            class="btn btn-green icon-building-o">Cadastrar Nova Empresa</a>
-                                    </p> --}}
+                                    </p>
                                 </div>
                             </div>
                         </div>

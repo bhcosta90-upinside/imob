@@ -33,6 +33,7 @@ Route::group([
         Route::get('/home', 'AuthController@home')->name('home');
         Route::get('/users/team', 'UserController@team')->name('users.team');
         Route::resource('users', 'UserController');
+        Route::resource('companies', 'CompanyController');
     });
 
     /**

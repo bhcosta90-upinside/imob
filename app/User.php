@@ -183,6 +183,11 @@ class User extends Authenticatable
         return '';
     }
 
+    public function companies()
+    {
+        return $this->hasMany(Company::class, 'user_id', 'id');
+    }
+
     private function convertStringToDate(?string $value, $format="d/m/Y"){
         if(empty($value)){
             return null;
