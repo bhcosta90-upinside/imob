@@ -29,7 +29,6 @@
                 <label class="label">
                     <span class="legend">Responsável Legal:</span>
                     <select name="user_id" class="select2">
-                        <option value="" selected>Selecione um responsável legal</option>
                         @foreach($users as $user)
                             <option value="{{ $user->id }}" {{ ($user->id === $company->user_id ? 'selected' : '') }}>{{ $user->name }} ({{ $user->document }})</option>
                         @endforeach

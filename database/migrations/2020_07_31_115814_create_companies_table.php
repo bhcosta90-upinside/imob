@@ -13,7 +13,6 @@ class CreateCompaniesTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('companies');
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedBigInteger('user_id');

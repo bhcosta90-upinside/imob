@@ -71,7 +71,7 @@ class CompanyController extends Controller
     public function edit(Company $company)
     {
         return view('admin.companies.edit', compact('company') + [
-            "users" => $this->getUsers(),
+            "users" => $this->getUsers(null),
         ]);
     }
 

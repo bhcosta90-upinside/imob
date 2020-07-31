@@ -445,7 +445,7 @@
 
                                 <div class="app_collapse_content">
                                     <div id="realties">
-                                        {{-- <div class="realty_list">
+                                        <div class="realty_list">
                                             @if($user->properties()->get())
                                                 @foreach($user->properties()->get() as $property)
                                                 <div class="realty_list_item mb-1">
@@ -522,7 +522,7 @@
                                             @else
                                                 <div class="no-content">Não foram encontrados registros!</div>
                                             @endif
-                                        </div> --}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

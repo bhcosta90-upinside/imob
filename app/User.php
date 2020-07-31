@@ -188,6 +188,11 @@ class User extends Authenticatable
         return $this->hasMany(Company::class, 'user_id', 'id');
     }
 
+    public function properties()
+    {
+        return $this->hasMany(Property::class, 'user_id', 'id');
+    }
+
     private function convertStringToDate(?string $value, $format="d/m/Y"){
         if(empty($value)){
             return null;

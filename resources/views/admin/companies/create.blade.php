@@ -8,13 +8,13 @@
         <div class="dash_content_app_header_actions">
             <nav class="dash_content_app_breadcrumb">
                 <ul>
-                    <li><a href="">Dashboard</a></li>
+                    <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
                     <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="">Clientes</a></li>
+                    <li><a href="{{ route('admin.users.index') }}">Clientes</a></li>
                     <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="">Empresas</a></li>
+                    <li><a href="{{ route('admin.companies.index') }}">Empresas</a></li>
                     <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="" class="text-orange">Nova Empresa</a></li>
+                    <li><a href="{{ route('admin.companies.create') }}" class="text-orange">Nova Empresa</a></li>
                 </ul>
             </nav>
         </div>
