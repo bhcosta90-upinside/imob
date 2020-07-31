@@ -4,7 +4,7 @@
     <section class="dash_content_app">
 
         <header class="dash_content_app_header">
-            <h2 class="icon-search">Cadastrar Novo Imóvel</h2>
+            <h2 class="icon-search">Editar Imóvel</h2>
 
             <div class="dash_content_app_header_actions">
                 <nav class="dash_content_app_breadcrumb">
@@ -401,7 +401,7 @@
                             </div>
                         </div>
 
-                        {{-- <div id="images" class="d-none">
+                        <div id="images" class="d-none">
                             <label class="label">
                                 <span class="legend">Imagens</span>
                                 <input type="file" name="files[]" multiple>
@@ -424,7 +424,7 @@
                                 </div>
                                 @endforeach
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
 
                     <div class="text-right mt-2">

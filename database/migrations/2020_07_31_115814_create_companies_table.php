@@ -14,8 +14,8 @@ class CreateCompaniesTable extends Migration
     public function up()
     {
         Schema::create('companies', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedBigInteger('user_id');
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('social_name');
             $table->string('alias_name');
             $table->string('document_company');

@@ -31,10 +31,29 @@ Route::group([
         "middleware" => "auth"
     ], function(){
         Route::get('/home', 'AuthController@home')->name('home');
+
+        /**
+         * Usuários
+         */
         Route::get('/users/team', 'UserController@team')->name('users.team');
         Route::resource('users', 'UserController');
+
+        /**
+         * Empresas
+         */
         Route::resource('companies', 'CompanyController');
+
+        /**
+         * Imóveis
+         */
+        Route::post('properties/image-set-cover', 'PropertyController@imageSetCover')->name('properties.imageSetCover');
+        Route::delete('properties/image-remove', 'PropertyController@imageRemove')->name('properties.imageRemove');
         Route::resource('properties', 'PropertyController');
+        
+        /**
+         * Contratos
+         */
+        Route::resource('contracts', 'ContractController');
     });
 
     /**

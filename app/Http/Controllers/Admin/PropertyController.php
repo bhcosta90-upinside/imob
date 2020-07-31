@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Admin\PropertyRequest;
 use App\User;
 use App\Property;
+use App\PropertyImage;
+use App\Support\Cropper;
+use Illuminate\Support\Facades\Storage;
 
 class PropertyController extends Controller
 {
@@ -18,7 +21,6 @@ class PropertyController extends Controller
     public function index()
     {
         $properties = Property::all();
-        
         return view('admin.properties.index', compact('properties'));
     }
 
@@ -46,6 +48,16 @@ class PropertyController extends Controller
         $obj->fill($request->validated());
 
         $obj = Property::create($request->validated());
+
+        if ($request->allFiles()) {
+            foreach($request->allFiles()['files'] as $rs) {
+                $objImage = new PropertyImage();
+                $objImage->property_id = $obj->id;
+                $objImage->path = $rs->store('properties/' . $obj->id);
+                $objImage->save();
+                unset($objImage);
+            }
+        }
 
         if(!$obj){
             return redirect()->back()->withInput()->withErrors();
@@ -113,6 +125,16 @@ class PropertyController extends Controller
             return redirect()->back()->withInput()->withErrors();
         }
 
+        if ($request->allFiles()) {
+            foreach($request->allFiles()['files'] as $rs) {
+                $objImage = new PropertyImage();
+                $objImage->property_id = $property->id;
+                $objImage->path = $rs->store('properties/' . $property->id);
+                $objImage->save();
+                unset($objImage);
+            }
+        }
+
         return redirect()->route('admin.properties.edit', $property->id)
             ->with(['color' => 'green', 'message' => 'Imóvel atualizado com sucesso!']);
     }
@@ -126,6 +148,42 @@ class PropertyController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function imageSetCover(Request $request)
+    {
+        $imageSetCover = PropertyImage::find($request->image);
+        $allImage = PropertyImage::where('property_id', $imageSetCover->property_id)
+            ->where('cover', true)
+            ->get();
+
+        foreach($allImage as $image) {
+            $image->cover = false;   
+            $image->save();
+        }
+
+        $imageSetCover->cover = true;
+        $imageSetCover->save();
+
+        $json = [
+            'success' => true
+        ];
+
+        return response()->json($json);
+    }
+
+    public function imageRemove(Request $request)
+    {
+        $imageDelete = PropertyImage::find($request->image);
+
+        Storage::delete($imageDelete->path);
+        Cropper::flush($imageDelete->path);
+        $imageDelete->delete();
+
+        $json = [
+            'success' => true
+        ];
+        return response()->json($json);
     }
 
     private function getUsers(?int $user)

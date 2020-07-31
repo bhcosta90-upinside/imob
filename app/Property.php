@@ -287,20 +287,25 @@ class Property extends Model
 
     public function cover()
     {
-        return url(asset('backend/assets/images/realty.jpeg'));
-        // $images = $this->images();
-        // $cover = $images->where('cover', 1)->first(['path']);
+        $images = $this->images();
+        $imagesClone = clone $images;
+        
+        $cover = $images->where('cover', 1)->first(['path']);
 
-        // if(!$cover) {
-        //     $images = $this->images();
-        //     $cover = $images->first(['path']);
-        // }
+        if(!$cover) {
+            $cover = $imagesClone->first(['path']);
+        }
 
-        // if(empty($cover['path']) || !File::exists('../public/storage/' . $cover['path'])) {
-        //     return url(asset('backend/assets/images/realty.jpeg'));
-        // }
+        if(empty($cover['path']) || !File::exists('../public/storage/' . $cover['path'])) {
+            return url(asset('backend/assets/images/realty.jpeg'));
+        }
 
-        // return Storage::url(Cropper::thumb($cover['path'], 1366, 768));
+        return Storage::url(Cropper::thumb($cover['path'], 1366, 768));
+    }
+
+    public function images()
+    {
+        return $this->hasMany(PropertyImage::class, 'property_id', 'id');
     }
 
     public function user()
