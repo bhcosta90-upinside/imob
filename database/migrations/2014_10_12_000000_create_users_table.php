@@ -56,7 +56,7 @@ class CreateUsersTable extends Migration
             $table->string('type_of_communion')->nullable();
             $table->string('spouse_name')->nullable();
             $table->string('spouse_genre')->nullable();
-            $table->string('spouse_document')->unique();
+            $table->string('spouse_document')->nullable()->unique();
             $table->string('spouse_document_secondary', 20)->nullable();
             $table->string('spouse_document_secondary_complement')->nullable();
             $table->date('spouse_date_of_birth')->nullable();

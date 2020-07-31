@@ -30,7 +30,7 @@ class UserRequest extends FormRequest
             "Participação Final de Aquestos",
         ];
 
-        return [
+        $rules  = [
             'name' => ['required', 'max:191', 'min:3'],
             'genre' => ['required', 'in:male,female,other'],
             'document' => ['required', 'min:11', 'max:14'],
@@ -68,16 +68,25 @@ class UserRequest extends FormRequest
                 'required_if:civil_status,married,separated',
                 'in:' . implode(',', $typeCommunion)
             ],
-            'spouse_name' => ['required_if:civil_status,married,separated', 'max:191', 'min:3'],
+            'spouse_name' => ['required_if:civil_status,married,separated', 'max:191'],
             'spouse_genre' => ['required_if:civil_status,married,separated', 'in:male,female,other'],
-            'spouse_document' => ['required_if:civil_status,married,separated', 'min:11', 'max:14'],
-            'spouse_document_secondary' => ['required_if:civil_status,married,separated', 'min:8', 'max:12'],
+            'spouse_document' => ['required_if:civil_status,married,separated', 'max:14'],
+            'spouse_document_secondary' => ['required_if:civil_status,married,separated', 'max:12'],
             'spouse_document_secondary_complement' => ['required_if:civil_status,married,separated'],
-            'spouse_date_of_birth' => ['required_if:civil_status,married,separated', 'date_format:d/m/Y'],
+            'spouse_date_of_birth' => ['required_if:civil_status,married,separated'],
             'spouse_place_of_birth' => [],
             'spouse_occupation' => ['required_if:civil_status,married,separated', 'max:191'],
             'spouse_income' => ['required_if:civil_status,married,separated'],
             'spouse_company_work' => ['max:191'],
         ];
+
+        if(in_array($this->request->get('civil_status'), ["married", "separated"])) {
+            $rules["spouse_name"] += ['min:3'];
+            $rules["spouse_document"] += ['min:8'];
+            $rules["spouse_document_secondary"] += ['min:8'];
+            $rules["spouse_date_of_birth"] += ['date_format:d/m/Y'];
+        }
+
+        return $rules;
     }
 }

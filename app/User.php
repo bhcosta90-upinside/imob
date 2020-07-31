@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\Support\Cropper;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -52,6 +54,8 @@ class User extends Authenticatable
         'spouse_company_work',
         'lessor',
         'lessee',
+        'admin',
+        'client',
     ];
 
     /**
@@ -74,12 +78,22 @@ class User extends Authenticatable
 
     public function setLessorAttribute($value)
     {
-        $this->attributes['lessor'] = (bool) $value === "on";
+        $this->attributes['lessor'] = (bool) ($value === "on");
     }
 
     public function setLesseeAttribute($value)
     {
-        $this->attributes['lessee'] = (bool) $value === "on";
+        $this->attributes['lessee'] = (bool) ($value === "on");
+    }
+
+    public function setAdminAttribute($value)
+    {
+        $this->attributes['admin'] = (bool) ($value === "on");
+    }
+
+    public function setClientAttribute($value)
+    {
+        $this->attributes['client'] = (bool) ($value === "on");
     }
 
     public function setDocumentAttribute($value)
@@ -87,9 +101,20 @@ class User extends Authenticatable
         $this->attributes['document'] = $this->clearField($value);
     }
 
+    public function getDocumentAttribute($value)
+    {
+        if ($value) return sprintf("%s.%s.%s-%s", 
+            substr($value, 0, 3), substr($value, 3, 3), substr($value, 6, 3), substr($value, 9, 2));
+    }
+
     public function setIncomeAttribute($value)
     {
         $this->attributes['income'] = $this->convertStringToDouble($value);
+    }
+
+    public function getIncomeAttribute($value)
+    {
+        return number_format($value, 2, ',', '.');
     }
 
     public function setDateOfBirthAttribute($value)
@@ -97,14 +122,31 @@ class User extends Authenticatable
         $this->attributes['date_of_birth'] = $this->convertStringToDate($value);
     }
 
+    public function getDateOfBirthAttribute($value)
+    {
+        if ($value) return Carbon::createFromFormat("Y-m-d", $value)->format('d/m/Y');
+        return null;
+    }
+
     public function setSpouseDocumentAttribute($value)
     {
         $this->attributes['spouse_document'] = $this->clearField($value);
     }
 
+    public function getSpouseDocumentAttribute($value)
+    {
+        if ($value) return sprintf("%s.%s.%s-%s", 
+            substr($value, 0, 3), substr($value, 3, 3), substr($value, 6, 3), substr($value, 9, 2));
+    }
+
     public function setSpouseIncomeAttribute($value)
     {
         $this->attributes['spouse_income'] = $this->convertStringToDouble($value);
+    }
+
+    public function getSpouseIncomeAttribute($value)
+    {
+        return number_format($value, 2, ',', '.');
     }
 
     public function setSpouseDateOfBirthAttribute($value)
@@ -130,6 +172,15 @@ class User extends Authenticatable
     public function setCellAttribute($value)
     {
         $this->attributes['cell'] = $this->clearField($value);
+    }
+
+    public function getUrlCoverAttribute()
+    {
+        if(!empty($this->cover)){
+            return Storage::url(Cropper::thumb($this->cover, 500, 500));
+        }
+
+        return '';
     }
 
     private function convertStringToDate(?string $value, $format="d/m/Y"){
