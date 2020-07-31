@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UserRequest;
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -28,14 +30,18 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param UserRequest $request
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        $user = new User();
+        $user->fill($request->all());
+
+        dump($user->getAttributes(), $request->all());
+
+        $userCreated = User::create($request->all());
+
+        dd($userCreated);
     }
 
     /**

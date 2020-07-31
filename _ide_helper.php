@@ -7354,7 +7354,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Interesting events.
          *
-         * Example: User logs in, SQL logs.
+         * Example: UserRequest logs in, SQL logs.
          *
          * @param string $message
          * @param array $context
