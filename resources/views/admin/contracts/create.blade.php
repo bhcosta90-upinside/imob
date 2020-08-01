@@ -123,7 +123,7 @@
                                                 <option 
                                                     data-spouse-name="{{ $lessee->spouse_name }}" 
                                                     data-spouse-document="{{ $lessee->spouse_document }}" 
-                                                    value="{{ $lessee->id }}" {{ (old('owner') == $lessee->id ? 'selected' : '') }}>
+                                                    value="{{ $lessee->id }}" {{ (old('acquirer') == $lessee->id ? 'selected' : '') }}>
                                                     {{ $lessee->name }} ({{ $lessee->document }})
                                                 </option>
                                             @endforeach
@@ -340,12 +340,12 @@
                 $('input[name="rent_price"]').val(rent_price);
                 $('input[name="tribute"]').val(tribute);
                 $('input[name="condominium"]').val(condominium);
-            } else {
-
             }
-        });
+        }).trigger('change');
+
         $('select[name="owner"], select[name="acquirer"]').change(function(){
             const el = $(this);
+            const nameSelect = $(el).prop('name') ;
             const spouseName = $(el).find(':selected').data("spouse-name");
             const spouseDocument = $(el).find(':selected').data("spouse-document");
             const optSpouser = $(el).parent().parent().find("select").eq(1);
@@ -370,10 +370,17 @@
             
             optSpouser.html(select);
 
+            switch(nameSelect){
+                case 'owner':
+                optSpouser.val($('input[name="owner_spouse_persist"]').val());
+                break;
+                case 'acquirer':
+                optSpouser.val($('input[name="acquirer_spouse_persist"]').val());
+                break;
+            }
+
             if(user) {
                 const action = $(el).data('action');
-                const nameSelect = $(el).prop('name') ;
-                const name = $();
 
                 $.post(action, {"user": user, "name": nameSelect}, function(response) {
                     var options = [
@@ -389,6 +396,15 @@
                     })
 
                     optCompany.html(options);
+
+                    switch(nameSelect){
+                        case 'owner':
+                        optCompany.val($('input[name="owner_company_persist"]').val());
+                        break;
+                        case 'acquirer':
+                        optCompany.val($('input[name="acquirer_company_persist"]').val());
+                        break;
+                    }
 
                     if(nameSelect == "owner") {
 
@@ -410,7 +426,7 @@
                                 }))
                             })
                         }
-                        optProperty.html(options);                        
+                        optProperty.html(options).val($("input[name='property_persist']").val()).trigger("change");
                     }
                 })
             }
