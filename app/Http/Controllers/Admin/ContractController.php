@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ContractRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -37,9 +38,9 @@ class ContractController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContractRequest $request)
     {
-        //
+        dd($request->all(), $request->validated());
     }
 
     /**
@@ -73,7 +74,7 @@ class ContractController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -90,7 +91,23 @@ class ContractController extends Controller
     public function getDataCompanies(Request $request)
     {
         $companies = User::find($request->user)->companies()->select(['id', 'social_name', 'document_company'])->get()->toArray();
-        $properties = $request->name == 'owner' ? User::find($request->user)->properties->toArray() : [];
+        $resultProperties = $request->name == 'owner' ? User::find($request->user)->properties : [];
+        $properties = [];
+        
+        if (!empty($resultProperties)) {
+            foreach ($resultProperties as $property) {
+                $properties[] = [
+                    "id" => $property->id,
+                    "description" => '#' . $property->id . ' ' . $property->street . ', ' .
+                        $property->number . ' ' . $property->neighborhood . ' ' .
+                        $property->city . '/' . $property->state . ' (' . $property->zipcode . ')',
+                    'sale_price' => $property->sale_price,
+                    'rent_price' => $property->rent_price,
+                    'tribute' => $property->tribute,
+                    'condominium' => $property->condominium,
+                ];
+            }
+        }
 
         return response()->json([
             "companies" => $companies,

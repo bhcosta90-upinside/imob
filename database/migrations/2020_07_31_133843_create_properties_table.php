@@ -66,8 +66,6 @@ class CreatePropertiesTable extends Migration
             $table->boolean('view_of_the_sea')->nullable();
 
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
         });
     }
 

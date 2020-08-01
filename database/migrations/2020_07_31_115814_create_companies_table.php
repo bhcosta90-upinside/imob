@@ -31,8 +31,6 @@ class CreateCompaniesTable extends Migration
             $table->string('city')->nullable();
 
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

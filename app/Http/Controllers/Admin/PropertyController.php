@@ -191,7 +191,7 @@ class PropertyController extends Controller
         if($user) {
             return User::where('id', $user)->get();
         } else {
-            return User::all();
+            return User::lessors()->get();
         }
     }
 }
