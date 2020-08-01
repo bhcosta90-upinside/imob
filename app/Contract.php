@@ -46,7 +46,7 @@ class Contract extends Model
 
     public function setOwnerSpouseAttribute($value)
     {
-        $this->attributes['owner_spouse'] = ($value === '1' ? 1 : 0);
+        $this->attributes['owner_spouse'] = ($value === '1' ? true : false);
     }
 
     public function setOwnerCompanyAttribute($value)
@@ -60,7 +60,7 @@ class Contract extends Model
 
     public function setAcquirerSpouseAttribute($value)
     {
-        $this->attributes['acquirer_spouse'] = ($value === '1' ? 1 : 0);
+        $this->attributes['acquirer_spouse'] = ($value === '1' ? true : false);
     }
 
     public function setAcquirerCompanyAttribute($value)
