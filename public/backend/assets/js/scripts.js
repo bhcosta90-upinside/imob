@@ -202,7 +202,7 @@ $(function () {
         } else {
             $('input[name="sale_price"]').attr('disabled', true);
         }
-    });
+    }).trigger('change');
 
     // ENABLE INPUT TO PRICE
     $('input[type="checkbox"][name="rent"]').change(function(){
@@ -211,7 +211,7 @@ $(function () {
         } else {
             $('input[name="rent_price"]').attr('disabled', true);
         }
-    });
+    }).trigger('change');
 
 });
 
