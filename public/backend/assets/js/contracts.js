@@ -6,7 +6,7 @@ $(function () {
         }
     });
     
-    $('select[name="property"]').change(function(){
+    $('select[name="property_id"]').change(function(){
         const el = $(this);
         const option = $(this).find(':selected'); 
 
@@ -23,14 +23,14 @@ $(function () {
         }
     }).trigger('change');
 
-    $('select[name="owner"], select[name="acquirer"]').change(function(){
+    $('select[name="owner_id"], select[name="acquirer_id"]').change(function(){
         const el = $(this);
         const nameSelect = $(el).prop('name') ;
         const spouseName = $(el).find(':selected').data("spouse-name");
         const spouseDocument = $(el).find(':selected').data("spouse-document");
         const optSpouser = $(el).parent().parent().find("select").eq(1);
         const optCompany = $(el).parent().parent().parent().find("select").eq(2);
-        const optProperty = $("select[name='property']");
+        const optProperty = $("select[name='property_id']");
         const user = $(el).val();
 
         var select = [];
@@ -51,11 +51,15 @@ $(function () {
         optSpouser.html(select);
 
         switch(nameSelect){
-            case 'owner':
-            optSpouser.val($('input[name="owner_spouse_persist"]').val());
+            case 'owner_id':
+                if ($('input[name="owner_spouse_persist"]').val() > 0) {
+                    optSpouser.val(1);
+                }
             break;
-            case 'acquirer':
-            optSpouser.val($('input[name="acquirer_spouse_persist"]').val());
+            case 'acquirer_id':
+                if($('input[name="acquirer_spouse_persist"]').val() > 0){
+                    optSpouser.val(1);
+                }
             break;
         }
 
@@ -78,21 +82,25 @@ $(function () {
                 optCompany.html(options);
 
                 switch(nameSelect){
-                    case 'owner':
+                    case 'owner_id':
                     optCompany.val($('input[name="owner_company_persist"]').val());
+                    $('input[name="owner_company_persist"]').val("");
+                    $('input[name="owner_spouse_persist"]').val("");
                     break;
-                    case 'acquirer':
+                    case 'acquirer_id':
                     optCompany.val($('input[name="acquirer_company_persist"]').val());
+                    $('input[name="acquirer_company_persist"]').val("");
+                    $('input[name="acquirer_spouse_persist"]').val("");
                     break;
                 }
 
-                if(nameSelect == "owner") {
+                if(nameSelect == "owner_id") {
 
                     var options = [
                         $("<option>", {value: "", html: "Não informado"})
                     ];
 
-                    if (nameSelect == 'owner') {
+                    if (nameSelect == 'owner_id') {
                         response.properties.map(function(item){
                             options.push($("<option>", {
                                 value: item.id, 
@@ -107,6 +115,7 @@ $(function () {
                         })
                     }
                     optProperty.html(options).val($("input[name='property_persist']").val()).trigger("change");
+                    $("input[name='property_persist']").val("");
                 }
             })
         }

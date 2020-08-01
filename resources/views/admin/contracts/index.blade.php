@@ -34,13 +34,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><a href="" class="text-orange">Robson V. Leite</a></td>
-                    <td><a href="" class="text-orange">Gustavo Web</a></td>
-                    <td>Locação</td>
-                    <td><?= date('d/m/Y'); ?></td>
-                    <td>12 meses</td>
-                </tr>
+                @foreach($results as $contract)
+                    <tr>
+                        <td><a href="{{ route('admin.contracts.edit', ['contract' => $contract->id]) }}" class="text-orange">{{ $contract->id }}</a></td>
+                        <td><a href="{{ route('admin.users.edit', ['user' => $contract->owner->id ]) }}" class="text-orange">{{ $contract->owner->name }}</a></td>
+                        <td><a href="{{ route('admin.users.edit', ['user' => $contract->acquirer->id ]) }}" class="text-orange">{{ $contract->acquirer->name }}</a></td>
+                        <td>{{ ($contract->sale == true ? 'Venda' : 'LocaÃ§Ã£o') }}</td>
+                        <td>{{ $contract->start_at }}</td>
+                        <td>{{ $contract->deadline }} meses</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

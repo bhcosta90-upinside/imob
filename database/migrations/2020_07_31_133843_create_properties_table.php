@@ -64,7 +64,8 @@ class CreatePropertiesTable extends Migration
             $table->boolean('pool')->nullable();
             $table->boolean('steam_room')->nullable();
             $table->boolean('view_of_the_sea')->nullable();
-
+            $table->boolean('status')->nullable();
+            
             $table->timestamps();
         });
     }

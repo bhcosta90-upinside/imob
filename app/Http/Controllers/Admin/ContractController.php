@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contract;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ContractRequest;
 use App\User;
@@ -16,7 +17,9 @@ class ContractController extends Controller
      */
     public function index()
     {
-        return view('admin.contracts.index');
+        $results = Contract::all();
+
+        return view('admin.contracts.index', compact('results'));
     }
 
     /**
@@ -40,7 +43,14 @@ class ContractController extends Controller
      */
     public function store(ContractRequest $request)
     {
-        dd($request->all(), $request->validated());
+        $obj = Contract::create($request->validated());
+
+        if(!$obj){
+            return redirect()->back()->withInput()->withErrors();
+        }
+
+        return redirect()->route('admin.companies.create')
+            ->with(['color' => 'green', 'message' => 'Contrato inserido com sucesso!']);
     }
 
     /**
@@ -60,9 +70,12 @@ class ContractController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Contract $contract)
     {
-        return view('admin.contracts.edit');
+        return view('admin.contracts.edit', compact('contract') + [
+            'lessors' => User::lessors()->get(),
+            'lessees' => User::lesseess()->get(),
+        ]);
     }
 
     /**
@@ -72,9 +85,16 @@ class ContractController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ContractRequest $request, Contract $contract)
     {
-        dd($request->all());
+        $contract->fill($request->validated());
+
+        if(!$contract->save()){
+            return redirect()->back()->withInput()->withErrors();
+        }
+
+        return redirect()->route('admin.contracts.edit', $contract->id)
+            ->with(['color' => 'green', 'message' => 'Contrato atualizado com sucesso!']);
     }
 
     /**
@@ -91,7 +111,7 @@ class ContractController extends Controller
     public function getDataCompanies(Request $request)
     {
         $companies = User::find($request->user)->companies()->select(['id', 'social_name', 'document_company'])->get()->toArray();
-        $resultProperties = $request->name == 'owner' ? User::find($request->user)->properties : [];
+        $resultProperties = $request->name == 'owner_id' ? User::find($request->user)->properties : [];
         $properties = [];
         
         if (!empty($resultProperties)) {

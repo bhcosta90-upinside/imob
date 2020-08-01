@@ -23,7 +23,7 @@ class CreateContractsTable extends Migration
             $table->foreignId('owner_company_id')->constrained("companies")->nullable();
             $table->foreignId('acquirer_id')->constrained("users")->onDelete("cascade");
             $table->boolean('acquirer_spouse')->default(false);
-            $table->foreignId('acquirer_company')->nullable()->constrained("companies")->onDelete("cascade");
+            $table->foreignId('acquirer_company_id')->nullable()->constrained("companies")->onDelete("cascade");
             $table->foreignId('property_id')->constrained("properties")->onDelete("cascade");
             $table->double('price');
             $table->double('tribute');
@@ -31,7 +31,8 @@ class CreateContractsTable extends Migration
             $table->unsignedInteger('due_date');
             $table->unsignedInteger('deadline');
             $table->date('start_at');
-
+            $table->string('status')->nullable();
+            
             $table->timestamps();
         });
     }

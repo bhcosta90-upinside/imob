@@ -37,11 +37,12 @@
                     <form action="{{ route('admin.contracts.store') }}" method="post" class="app_form">
                         @csrf
 
+                    
                         <input type="hidden" name="owner_spouse_persist" value="{{ old('owner_spouse') }}">
-                        <input type="hidden" name="owner_company_persist" value="{{ old('owner_company') }}">
+                        <input type="hidden" name="owner_company_persist" value="{{ old('owner_company_id') }}">
                         <input type="hidden" name="acquirer_spouse_persist" value="{{ old('acquirer_spouse') }}">
-                        <input type="hidden" name="acquirer_company_persist" value="{{ old('acquirer_company') }}">
-                        <input type="hidden" name="property_persist" value="{{ old('property') }}">
+                        <input type="hidden" name="acquirer_company_persist" value="{{ old('acquirer_company_id') }}">
+                        <input type="hidden" name="property_persist" value="{{ old('property_id') }}">
 
                         <div class="label_gc">
                             <span class="legend">Finalidade:</span>
@@ -75,14 +76,14 @@
                                 <div class="label_g2">
                                     <label class="label">
                                         <span class="legend">Proprietário:</span>
-                                        <select class="select2" name="owner"
+                                        <select class="select2" name="owner_id"
                                                 data-action="{{ route('admin.contracts.getDataCompanies') }}">
                                             <option value="">Informe um Cliente</option>
                                             @foreach($lessors as $lessor)
                                                 <option 
                                                     data-spouse-name="{{ $lessor->spouse_name }}" 
                                                     data-spouse-document="{{ $lessor->spouse_document }}" 
-                                                    value="{{ $lessor->id }}" {{ (old('owner') == $lessor->id ? 'selected' : '') }}>
+                                                    value="{{ $lessor->id }}" {{ (old('owner_id') == $lessor->id ? 'selected' : '') }}>
                                                     {{ $lessor->name }} ({{ $lessor->document }})
                                                 </option>
                                             @endforeach
@@ -99,7 +100,7 @@
 
                                 <label class="label">
                                     <span class="legend">Empresa:</span>
-                                    <select class="select2" name="owner_company">
+                                    <select class="select2" name="owner_company_id">
                                         <option value="" selected>Não informado</option>
                                     </select>
                                 </label>
@@ -116,14 +117,14 @@
                                 <div class="label_g2">
                                     <label class="label">
                                         <span class="legend">Adquirente:</span>
-                                        <select name="acquirer" class="select2"
+                                        <select name="acquirer_id" class="select2"
                                                 data-action="{{ route('admin.contracts.getDataCompanies') }}">
                                             <option value="" selected>Informe um Cliente</option>
                                             @foreach($lessees as $lessee)
                                                 <option 
                                                     data-spouse-name="{{ $lessee->spouse_name }}" 
                                                     data-spouse-document="{{ $lessee->spouse_document }}" 
-                                                    value="{{ $lessee->id }}" {{ (old('acquirer') == $lessee->id ? 'selected' : '') }}>
+                                                    value="{{ $lessee->id }}" {{ (old('acquirer_id') == $lessee->id ? 'selected' : '') }}>
                                                     {{ $lessee->name }} ({{ $lessee->document }})
                                                 </option>
                                             @endforeach
@@ -141,7 +142,7 @@
 
                                 <label class="label">
                                     <span class="legend">Empresa:</span>
-                                    <select name="acquirer_company" class="select2">
+                                    <select name="acquirer_company_id" class="select2">
                                         <option value="" selected>Não informado</option>
                                     </select>
                                 </label>
@@ -157,7 +158,7 @@
                             <div class="app_collapse_content">
                                 <label class="label">
                                     <span class="legend">Imóvel:</span>
-                                    <select name="property" class="select2"
+                                    <select name="property_id" class="select2"
                                             data-action="{{ route('admin.contracts.getDataProperty') }}">
                                         <option value="">Não informado</option>
                                     </select>
