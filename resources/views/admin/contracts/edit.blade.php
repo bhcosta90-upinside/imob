@@ -43,9 +43,9 @@
 
                             <div class='persist'>
                                 <input type="hidden" name="owner_spouse_persist" value="{{ old('owner_spouse') ?? $contract->owner_spouse }}">
-                                <input type="hidden" name="owner_company_persist" value="{{ old('owner_company') ?? $contract->owner_company_id }}">
+                                <input type="hidden" name="owner_company_persist" value="{{ old('owner_company_id') ?? $contract->owner_company_id }}">
                                 <input type="hidden" name="acquirer_spouse_persist" value="{{ old('acquirer_spouse') ?? $contract->acquirer_spouse }}">
-                                <input type="hidden" name="acquirer_company_persist" value="{{ old('acquirer_company') ?? $contract->acquirer_company_id }}">
+                                <input type="hidden" name="acquirer_company_persist" value="{{ old('acquirer_company_id') ?? $contract->acquirer_company_id }}">
                                 <input type="hidden" name="property_persist" value="{{ old('property_id') ?? $contract->property_id }}">
                             </div>
 

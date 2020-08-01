@@ -16,10 +16,12 @@ $(function () {
             const tribute = option.data("tribute");
             const condominium = option.data("condominium");
 
-            $('input[name="sale_price"]').val(sale_price);
-            $('input[name="rent_price"]').val(rent_price);
-            $('input[name="tribute"]').val(tribute);
-            $('input[name="condominium"]').val(condominium);
+            if($("input[name='property_persist']").val() == "") {
+                $('input[name="sale_price"]').val(sale_price);
+                $('input[name="rent_price"]').val(rent_price);
+                $('input[name="tribute"]').val(tribute);
+                $('input[name="condominium"]').val(condominium);
+            }
         }
     }).trigger('change');
 
