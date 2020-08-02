@@ -204,6 +204,11 @@ class User extends Authenticatable
         return $builder->where('lessee', true);
     }
 
+    public function scopeTeam(Builder $builder)
+    {
+        return $builder->where('admin', true);
+    }
+
     private function convertStringToDate(?string $value, $format="d/m/Y"){
         if(empty($value)){
             return null;

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contract;
 use App\Http\Controllers\Controller;
+use App\Property;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -20,7 +22,34 @@ class AuthController extends Controller
 
     public function home()
     {
-        return view('admin.dashboard');
+        $lessors = User::lessors()->count();
+        $lesseess = User::lesseess()->count();
+        $team = User::team()->count();
+        $property = Property::count();
+        $propertyAvailable = Property::available()->count();
+        $propertyUnvailable = Property::unavailable()->count();
+        $contract = Contract::count();
+        $contractPending = Contract::pending()->count();
+        $contractActive = Contract::active()->count();
+        $contractCanceled = Contract::canceled()->count();
+
+        $contracts = Contract::with(['owner', 'acquirer'])->orderBy('id', 'DESC')->limit(10)->get();
+        $properties = Property::orderBy('id', 'DESC')->limit(3)->get();
+
+        return view('admin.dashboard', compact(
+            'lessors', 
+            'lesseess', 
+            'team', 
+            'property', 
+            'propertyAvailable', 
+            'propertyUnvailable',
+            'contract',
+            'contractPending',
+            'contractActive',
+            'contractCanceled',
+            'contracts',
+            'properties'
+        ));
     }
 
     public function logout()

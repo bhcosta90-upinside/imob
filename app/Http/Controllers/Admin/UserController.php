@@ -123,6 +123,7 @@ class UserController extends Controller
 
     public function team()
     {
-        return view('admin.users.team');
+        $users = User::team()->get();
+        return view('admin.users.team', compact('users'));
     }
 }

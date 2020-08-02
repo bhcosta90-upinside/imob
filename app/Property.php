@@ -4,6 +4,7 @@ namespace App;
 
 use App\Support\Cropper;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -311,6 +312,16 @@ class Property extends Model
     public function user()
     {
         return $this->belongsTo(Company::class, 'user_id', 'id');
+    }
+
+    public function scopeAvailable(Builder $builder)
+    {
+        return $builder->where('status', true);
+    }
+
+    public function scopeUnavailable(Builder $builder)
+    {
+        return $builder->where('status', false);
     }
 
     private function convertStringToDouble($param)

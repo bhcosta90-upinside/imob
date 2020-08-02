@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Contract extends Model
@@ -162,6 +163,21 @@ class Contract extends Model
     public function property()
     {
         return $this->hasOne(Property::class, 'id', 'property_id');
+    }
+
+    public function scopePending(Builder $builder)
+    {
+        return $builder->where('status', 'pending');
+    }
+
+    public function scopeActive(Builder $builder)
+    {
+        return $builder->where('status', 'active');
+    }
+
+    public function scopeCanceled(Builder $builder)
+    {
+        return $builder->where('status', 'canceled');
     }
 
     public function terms()
