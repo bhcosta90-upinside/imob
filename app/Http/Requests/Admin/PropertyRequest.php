@@ -43,6 +43,7 @@ class PropertyRequest extends FormRequest
             'garage_covered' => 'required',
             'area_total' => 'required',
             'area_util' => 'required',
+            'status' => 'boolean',
 
             // Address
             'zipcode' => 'required|min:8|max:9',

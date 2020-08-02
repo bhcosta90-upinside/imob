@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Contract;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ContractRequest;
+use App\Property;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class ContractController extends Controller
      */
     public function index()
     {
-        $results = Contract::all();
+        $results = Contract::with(['owner', 'acquirer'])->get();
 
         return view('admin.contracts.index', compact('results'));
     }

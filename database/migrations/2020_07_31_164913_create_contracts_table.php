@@ -31,7 +31,7 @@ class CreateContractsTable extends Migration
             $table->unsignedInteger('due_date');
             $table->unsignedInteger('deadline');
             $table->date('start_at');
-            $table->string('status')->nullable();
+            $table->string('status')->default('pending');
             
             $table->timestamps();
         });
