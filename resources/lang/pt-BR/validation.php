@@ -195,6 +195,7 @@ return [
         "occupation" => "profissão",
         "income" => "renda",
         "company_work" => "empresa",
+        "cover" => "foto",
 
         #Address
         "number" => "número",
@@ -224,8 +225,11 @@ return [
 
         // Contracts
         'owner' => 'proprietário',
+        'owner_id' => 'proprietário',
         'acquirer' => 'adquirente',
+        'acquirer_id' => 'adquirente',
         'property' => 'imóvel',
+        'property_id' => 'imóvel',
         'start_at' => 'data de início',
 
         // PROPERTY

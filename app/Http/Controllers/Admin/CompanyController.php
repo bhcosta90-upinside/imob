@@ -17,7 +17,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::with(['user'])->get();
+        $companies = Company::with(['owner'])->get();
         return view('admin.companies.index', compact('companies'));
     }
 

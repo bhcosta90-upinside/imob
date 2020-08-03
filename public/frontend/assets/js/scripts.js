@@ -1,0 +1,1 @@
+$(function(){$("body").on("click",'[data-toggle="lightbox"]',function(t){t.preventDefault(),$(this).ekkoLightbox()}),$(".open_filter").on("click",function(t){t.preventDefault(),box=$(".form_advanced"),button=$(this),"none"!==box.css("display")?button.text("Filtro Avançado ↓"):button.text("✗ Fechar"),box.slideToggle()})});

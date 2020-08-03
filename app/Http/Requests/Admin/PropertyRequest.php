@@ -45,6 +45,11 @@ class PropertyRequest extends FormRequest
             'area_util' => 'required',
             'status' => 'boolean',
 
+            // Website
+            'title' => ['required', 'max:191'],
+            'headline' => ['max:191'],
+            'experience' => ['in:Cobertura,Alto Padrão,De Frente para o Mar,Condomínio Fechado,Compacto,Lojas e Salas'],
+
             // Address
             'zipcode' => 'required|min:8|max:9',
             'street' => 'required',

@@ -14,6 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group([
+    'namespace' => 'Web',
+    'as' => 'web.'
+], function(){
+    Route::get('/', 'WebController@home')->name('home');
+    Route::get('/contato', 'WebController@contact')->name('contact');
+    Route::get('/quero-alugar', 'WebController@rent')->name('rent');
+    Route::get('/quero-comprar', 'WebController@buy')->name('buy');
+    Route::get('/filtro', 'WebController@filter')->name('filter');
+    Route::get('/imovel', 'WebController@property')->name('property');
+});
+
+Route::group([
     'prefix' => 'admin',
     'namespace' => 'Admin',
     'as' => 'admin.',
@@ -49,7 +61,7 @@ Route::group([
         Route::post('properties/image-set-cover', 'PropertyController@imageSetCover')->name('properties.imageSetCover');
         Route::delete('properties/image-remove', 'PropertyController@imageRemove')->name('properties.imageRemove');
         Route::resource('properties', 'PropertyController');
-        
+
         /**
          * Contratos
          */

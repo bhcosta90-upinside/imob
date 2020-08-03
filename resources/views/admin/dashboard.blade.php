@@ -44,6 +44,7 @@
                     <table id="dataTable" class="nowrap hover stripe" width="100" style="width: 100% !important;">
                         <thead>
                         <tr>
+                            <th>#</th>
                             <th>Locador</th>
                             <th>Locatário</th>
                             <th>Negócio</th>
@@ -54,6 +55,7 @@
                         <tbody>
                         @foreach($contracts as $contract)
                             <tr>
+                                <td><a href="{{ route('admin.contracts.edit', ['contract' => $contract->id]) }}" class="text-orange">{{ $contract->id }}</a></td>
                                 <td><a href="{{ route('admin.users.edit', ['user' => $contract->owner->id ]) }}" class="text-orange">{{ $contract->owner->name }}</a></td>
                                 <td><a href="{{ route('admin.users.edit', ['user' => $contract->acquirer->id ]) }}" class="text-orange">{{ $contract->acquirer->name }}</a></td>
                                 <td>{{ ($contract->sale == true ? 'Venda' : 'LocaÃ§Ã£o') }}</td>

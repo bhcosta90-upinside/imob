@@ -48,7 +48,7 @@ class UserRequest extends FormRequest
             'date_of_birth' => ['required', 'date_format:d/m/Y'],
             'place_of_birth' => ['required'],
             'civil_status' => ['required', 'in:married,separated,single,divorced,widower'],
-            'file' => [],
+            'cover' => ['image'],
 
             #Income
             'occupation' => ['required', 'max:191'],

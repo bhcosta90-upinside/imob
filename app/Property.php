@@ -52,8 +52,21 @@ class Property extends Model
         'pool',
         'steam_room',
         'view_of_the_sea',
-        'status'
+        'status',
+        'title',
+        'slug',
+        'headline',
+        'experience'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::created(function($obj){
+            $obj->slug = str_slug($obj->title) . "-" . $obj->id;
+            $obj->save();
+        });
+    }
 
     public function setSaleAttribute($value)
     {
@@ -290,7 +303,7 @@ class Property extends Model
     {
         $images = $this->images();
         $imagesClone = clone $images;
-        
+
         $cover = $images->where('cover', 1)->first(['path']);
 
         if(!$cover) {
