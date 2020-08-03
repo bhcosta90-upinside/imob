@@ -4,8 +4,8 @@
     <section class="main_property">
         <div class="main_property_header py-5 bg-light">
             <div class="container">
-                <h1 class="text-front">Linda Casa no Campeche com vista para o Morro do Lampião</h1>
-                <p class="mb-0">Imóvel Residencial - Casa - Campeche</p>
+                <h1 class="text-front">{{ $property->title }}</h1>
+                <p class="mb-0">{{ $property->category }} - {{ $property->type }} - {{ $property->neighborhood }}</p>
             </div>
         </div>
 
@@ -15,89 +15,25 @@
                     <div class="col-12 col-lg-8">
                         <div id="carouselProperty" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
-                                <li data-target="#carouselProperty" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselProperty" data-slide-to="1"></li>
-                                <li data-target="#carouselProperty" data-slide-to="2"></li>
-                                <li data-target="#carouselProperty" data-slide-to="3"></li>
-                                <li data-target="#carouselProperty" data-slide-to="4"></li>
-                                <li data-target="#carouselProperty" data-slide-to="5"></li>
-                                <li data-target="#carouselProperty" data-slide-to="6"></li>
-                                <li data-target="#carouselProperty" data-slide-to="7"></li>
-                                <li data-target="#carouselProperty" data-slide-to="8"></li>
+                                @if($property->images->count())
+                                    @foreach($property->images as $rs)
+                                        <li data-target="#carouselProperty" data-slide-to="{{ $loop->iteration  }}" class="{{ $loop->iteration == 1 ? "active" : "" }}"></li>
+                                    @endforeach
+                                @endif
                             </ol>
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <a href="properties/1/5a3571ab-4d76-466f-8246-eff8cb98cedd.jpg" data-toggle="lightbox"
-                                       data-gallery="property-gallery" data-type="image">
-                                        <img src="properties/1/5a3571ab-4d76-466f-8246-eff8cb98cedd.jpg"
-                                             class="d-block w-100"
-                                             alt="...">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a href="properties/1/6abf463b-67a0-4fee-847e-42537699ad8e.jpg" data-toggle="lightbox"
-                                       data-gallery="property-gallery" data-type="image">
-                                        <img src="properties/1/6abf463b-67a0-4fee-847e-42537699ad8e.jpg"
-                                             class="d-block w-100"
-                                             alt="...">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a href="properties/1/8f317473-e7b0-4c6e-8198-2ebe44a21f11.jpg" data-toggle="lightbox"
-                                       data-gallery="property-gallery" data-type="image">
-                                        <img src="properties/1/8f317473-e7b0-4c6e-8198-2ebe44a21f11.jpg"
-                                             class="d-block w-100"
-                                             alt="...">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a href="properties/1/9dc77db7-80b5-49b9-80f5-a99b3ea1ce7a.jpg" data-toggle="lightbox"
-                                       data-gallery="property-gallery" data-type="image">
-                                        <img src="properties/1/9dc77db7-80b5-49b9-80f5-a99b3ea1ce7a.jpg"
-                                             class="d-block w-100"
-                                             alt="...">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a href="properties/1/089dac35-8d59-4cb0-bf0a-7b9a7d8642f1.jpg" data-toggle="lightbox"
-                                       data-gallery="property-gallery" data-type="image">
-                                        <img src="properties/1/089dac35-8d59-4cb0-bf0a-7b9a7d8642f1.jpg"
-                                             class="d-block w-100"
-                                             alt="...">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a href="properties/1/197a0015-d51b-4c39-8e02-bbc731e10474.jpg" data-toggle="lightbox"
-                                       data-gallery="property-gallery" data-type="image">
-                                        <img src="properties/1/197a0015-d51b-4c39-8e02-bbc731e10474.jpg"
-                                             class="d-block w-100"
-                                             alt="...">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a href="properties/1/6406b54f-32e3-4e30-8dad-e00ff7779cab.jpg" data-toggle="lightbox"
-                                       data-gallery="property-gallery" data-type="image">
-                                        <img src="properties/1/6406b54f-32e3-4e30-8dad-e00ff7779cab.jpg"
-                                             class="d-block w-100"
-                                             alt="...">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a href="properties/1/8608f813-65de-471c-9dcd-3a4ae17ba214.jpg" data-toggle="lightbox"
-                                       data-gallery="property-gallery" data-type="image">
-                                        <img src="properties/1/8608f813-65de-471c-9dcd-3a4ae17ba214.jpg"
-                                             class="d-block w-100"
-                                             alt="...">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a href="properties/1/a87d07d9-d477-4583-90c1-12dea16b7475.jpg" data-toggle="lightbox"
-                                       data-gallery="property-gallery" data-type="image">
-                                        <img src="properties/1/a87d07d9-d477-4583-90c1-12dea16b7475.jpg"
-                                             class="d-block w-100"
-                                             alt="...">
-                                    </a>
-                                </div>
+                                @if($property->images->count())
+                                    @foreach($property->images as $rs)
+                                        <div class="carousel-item {{ $loop->iteration == 1 ? "active" : "" }}">
+                                            <a href="{{ $rs->url_cropped }}" data-toggle="lightbox"
+                                               data-gallery="property-gallery" data-type="image">
+                                                <img src="{{ $rs->url_cropped }}"
+                                                     class="d-block w-100"
+                                                     alt="{{ $rs->title }}">
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
                             <a class="carousel-control-prev" href="#carouselProperty" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -110,22 +46,13 @@
                         </div>
 
                         <div class="main_property_price pt-4 text-muted">
-                            <p class="main_property_price_small">IPTU: R$ 100,00 | Condomínio: R$ 350,00</p>
-                            <p class="main_property_price_big">Valor do Aluguel: R$ 1.2000,00</p>
+                            <p class="main_property_price_small">IPTU: R$ {{ $property->tribute }} @if($property->condominium != '0,00')| Condomínio: R$ {{ $property->condominium  }} @endif</p>
+                            <p class="main_property_price_big">Valor do Aluguel: R$ {{ $property->rent_price }}/mês</p>
                         </div>
 
                         <div class="main_property_content_description">
                             <h2 class="text-front">Conheça mais o imóvel</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto cumque distinctio
-                                doloribus
-                                fugiat perspiciatis quae quaerat quod sint? Alias amet dolorum illum ipsa itaque laborum,
-                                porro
-                                praesentium quam. A atque in ut.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto cumque distinctio
-                                doloribus
-                                fugiat perspiciatis quae quaerat quod sint? Alias amet dolorum illum ipsa itaque laborum,
-                                porro
-                                praesentium quam. A atque in ut.</p>
+                            {!! $property->description !!}
                         </div>
 
                         <div class="main_property_content_features">
@@ -134,35 +61,35 @@
                                 <tbody>
                                 <tr>
                                     <td>Domitórios</td>
-                                    <td>2</td>
+                                    <td>{{ $property->bedrooms }}</td>
                                 </tr>
                                 <tr>
                                     <td>Suítes</td>
-                                    <td>1</td>
+                                    <td>{{ $property->suites }}</td>
                                 </tr>
                                 <tr>
                                     <td>Banheiros</td>
-                                    <td>3</td>
+                                    <td>{{ $property->bathrooms }}</td>
                                 </tr>
                                 <tr>
                                     <td>Salas</td>
-                                    <td>1</td>
+                                    <td>{{ $property->rooms }}</td>
                                 </tr>
                                 <tr>
                                     <td>Garagem</td>
-                                    <td>2</td>
+                                    <td>{{ $property->garage }}</td>
                                 </tr>
                                 <tr>
                                     <td>Garagem Coberta</td>
-                                    <td>2</td>
+                                    <td>{{ $property->garage_covered }}</td>
                                 </tr>
                                 <tr>
                                     <td>Área Total</td>
-                                    <td>300 m&sup2;</td>
+                                    <td>{{ $property->area_total }} m&sup2;</td>
                                 </tr>
                                 <tr>
                                     <td>Área Útil</td>
-                                    <td>150 m&sup2;</td>
+                                    <td>{{ $property->area_util }} m&sup2;</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -172,10 +99,69 @@
                             <h2 class="text-front">Estrutura</h2>
 
                             <div class="row">
-                                <span class="main_property_structure_item icon-check">Churrasqueira</span>
-                                <span class="main_property_structure_item icon-check">Biblioteca</span>
-                                <span class="main_property_structure_item icon-check">Edícula</span>
-                                <span class="main_property_structure_item icon-check">Piscina</span>
+                                @if($property->air_conditioning == true)
+                                    <span class="main_property_structure_item icon-check">Ar Condicionado</span>
+                                @endif
+
+                                @if($property->bar == true)
+                                    <span class="main_property_structure_item icon-check">Bar</span>
+                                @endif
+
+                                @if($property->library == true)
+                                    <span class="main_property_structure_item icon-check">Biblioteca</span>
+                                @endif
+
+                                @if($property->barbecue_grill == true)
+                                    <span class="main_property_structure_item icon-check">Churrasqueira</span>
+                                @endif
+
+                                @if($property->american_kitchen == true)
+                                    <span class="main_property_structure_item icon-check">Cozinha Americana</span>
+                                @endif
+
+                                @if($property->fitted_kitchen == true)
+                                    <span class="main_property_structure_item icon-check">Cozinha Planejada</span>
+                                @endif
+
+                                @if($property->pantry == true)
+                                    <span class="main_property_structure_item icon-check">Despensa</span>
+                                @endif
+
+                                @if($property->edicule == true)
+                                    <span class="main_property_structure_item icon-check">Edicula</span>
+                                @endif
+
+                                @if($property->office == true)
+                                    <span class="main_property_structure_item icon-check">Escritório</span>
+                                @endif
+
+                                @if($property->bathtub == true)
+                                    <span class="main_property_structure_item icon-check">Banheira</span>
+                                @endif
+
+                                @if($property->fireplace == true)
+                                    <span class="main_property_structure_item icon-check">Lareira</span>
+                                @endif
+
+                                @if($property->lavatory == true)
+                                    <span class="main_property_structure_item icon-check">Lavabo</span>
+                                @endif
+
+                                @if($property->furnished == true)
+                                    <span class="main_property_structure_item icon-check">Mobiliado</span>
+                                @endif
+
+                                @if($property->pool == true)
+                                    <span class="main_property_structure_item icon-check">Piscina</span>
+                                @endif
+
+                                @if($property->steam_room == true)
+                                    <span class="main_property_structure_item icon-check">Sauna</span>
+                                @endif
+
+                                @if($property->view_of_the_sea == true)
+                                    <span class="main_property_structure_item icon-check">Vista para o Mar</span>
+                                @endif
                             </div>
                         </div>
 
@@ -242,7 +228,7 @@
 
         function markMap() {
 
-            var locationJson = $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=Rodovia+Doutor+Antonio+Luiz+Moura+Gonzaga,+3339+Florianopolis+Campeche&key=', function(response){
+            var locationJson = $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address={{ $property->street }},+{{ $property->number }}+{{ $property->city }}+{{ $property->neighborhood }}&key={{ env('GOOGLE_API_KEY') }}', function(response){
                 console.log(response.results[0].geometry.location.lat);
                 console.log(response.results[0].geometry.location.lng);
 
@@ -277,5 +263,5 @@
             });
         }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=markMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&callback=markMap"></script>
 @endsection

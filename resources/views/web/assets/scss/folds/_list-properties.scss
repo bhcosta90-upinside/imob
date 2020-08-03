@@ -2,12 +2,21 @@
   .main_properties_item {
 
     h2 {
-      font-size: 1.4em;
-      margin-top: 10px;
+        font-size: 1.4em;
+        margin-top: 10px;
 
-      a:hover {
-        text-decoration: none;
-      }
+        a {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            height: 52px;
+            -webkit-line-clamp: 2; /* number of lines to show */
+            -webkit-box-orient: vertical;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
     }
 
     .main_properties_item_category {
@@ -15,8 +24,14 @@
     }
 
     .main_properties_item_type {
-      font-size: 0.875em;
-      color: #666;
+        font-size: 0.875em;
+        color: #666;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        height: 21px;
+        -webkit-line-clamp: 1; /* number of lines to show */
+        -webkit-box-orient: vertical;
     }
 
     .main_properties_price {

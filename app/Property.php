@@ -337,6 +337,16 @@ class Property extends Model
         return $builder->where('status', false);
     }
 
+    public function scopeSale(Builder $builder)
+    {
+        return $builder->where('sale', 1);
+    }
+
+    public function scopeRent(Builder $builder)
+    {
+        return $builder->where('rent', 1);
+    }
+
     private function convertStringToDouble($param)
     {
         if(empty($param)){

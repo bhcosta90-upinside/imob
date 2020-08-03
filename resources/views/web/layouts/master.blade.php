@@ -16,6 +16,9 @@
     @endif
 
     <link rel="icon" type="image/png" href="{{ asset("frontend/assets/images/favicon.png") }}"/>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
 </head>
 <body>
 
@@ -48,7 +51,7 @@
         <div class="container">
 
             <div class="navbar-brand">
-                <a href="index.php">
+                <a href="{{ route('web.home') }}">
                     <h1 class="text-hide">Imobiliária</h1>
                     <img src="{{ asset('frontend/assets/images/logo.png') }}" width="280" alt="Imobiliária" class="d-inline-block">
                 </a>

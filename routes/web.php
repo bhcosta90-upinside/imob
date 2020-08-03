@@ -12,17 +12,57 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::group([
+    'prefix' => 'api',
+    'namespace' => 'Web',
+    'as' => 'api.'
+], function(){
+    Route::post('search', 'ApiController@search')->name('search');
+    Route::post('category', 'ApiController@category')->name('category');
+    Route::post('type', 'ApiController@type')->name('type');
+    Route::post('neighborhood', 'ApiController@neighborhood')->name('neighborhood');
+    Route::post('bedrooms', 'ApiController@bedrooms')->name('bedrooms');
+    Route::post('suites', 'ApiController@suites')->name('suites');
+    Route::post('bathrooms', 'ApiController@bathrooms')->name('bathrooms');
+    Route::post('garage', 'ApiController@garage')->name('garage');
+    Route::post('price-base', 'ApiController@priceBase')->name('price.base');
+    Route::post('price-limit', 'ApiController@priceLimit')->name('price.limit');
+});
 Route::group([
     'namespace' => 'Web',
     'as' => 'web.'
 ], function(){
+    /**
+     * Página inicial
+     */
     Route::get('/', 'WebController@home')->name('home');
+
+    /**
+     * Contato
+     */
     Route::get('/contato', 'WebController@contact')->name('contact');
+
+    /**
+     * Aluguel de imóveis
+     */
+    Route::get('/quero-alugar/{slug}', 'WebController@rentProperty')->name('rent.property');
     Route::get('/quero-alugar', 'WebController@rent')->name('rent');
+
+    /**
+     * Compras de imóveis
+     */
+    Route::get('/quero-comprar/{slug}', 'WebController@buyProperty')->name('buy.property');
     Route::get('/quero-comprar', 'WebController@buy')->name('buy');
+
+    /**
+     * Filtragem
+     */
     Route::get('/filtro', 'WebController@filter')->name('filter');
-    Route::get('/imovel', 'WebController@property')->name('property');
+
+    /**
+     * Página de detalhes do imóvel
+     */
+    Route::get('/imovel', 'WebController@property')->name('propert');
 });
 
 Route::group([

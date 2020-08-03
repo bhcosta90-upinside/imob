@@ -20,14 +20,14 @@
                 <form action="" class="form-inline w-100">
                     <div class="form-group col-12 col-sm-6 col-lg-3">
                         <label for="search" class="mb-2"><b>Comprar ou Alugar?</b></label>
-                        <select class="selectpicker" id="search" name="search" title="Escolha...">
+                        <select data-action="{{route('api.search')}}" class="selectpicker" data-index="1" id="search" name="filter_search" title="Escolha...">
                             <option value="buy">Comprar</option>
                             <option value="rent">Alugar</option>
                         </select>
                     </div>
                     <div class="form-group col-12 col-sm-6 col-lg-3">
                         <label for="category" class="mb-2"><b>O que você quer?</b></label>
-                        <select class="selectpicker" id="category" name="category" title="Escolha...">
+                        <select data-action="{{route('api.category')}}" class="selectpicker" id="category" name="filter_category" data-index="2" title="Escolha...">
                             <option value="">Imóvel Residencial</option>
                             <option value="">Comercial/Industrial</option>
                             <option value="">Terreno</option>
@@ -36,7 +36,7 @@
 
                     <div class="form-group col-12 col-sm-6 mt-sm-2 mt col-lg-3 mt-lg-0">
                         <label for="type" class="mb-2 d-block"><b>Qual o tipo do imóvel?</b></label>
-                        <select class="selectpicker input-large" id="type" name="type" multiple data-actions-box="true">
+                        <select data-action="{{route('api.type')}}" class="selectpicker input-large" id="type" name="filter_type" data-index="3" multiple data-actions-box="true">
                             <option value="">Casa</option>
                             <option value="">Apartamento</option>
                             <option value="">Terreno</option>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-3 mt-lg-0">
                         <label for="search_locale" class="mb-2"><b>Onde você quer?</b></label>
-                        <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha..." multiple data-actions-box="true">
+                        <select data-action="{{route('api.neighborhood')}}" class="selectpicker" name="filter_neighborhood" id="neighborhood" data-index="4" title="Escolha..." multiple data-actions-box="true">
                             <option value="">Campeche</option>
                             <option value="">Rio Tavares</option>
                             <option value="">Morro das Pedras</option>
@@ -89,7 +89,7 @@
                         <div class="row">
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-3 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Quartos</b></label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
+                                <select data-action="{{route('api.bedrooms')}}" class="selectpicker" name="filter_bedrooms" data-index="5" id="bedrooms" title="Escolha...">
                                     <option value="">1</option>
                                     <option value="">2</option>
                                     <option value="">3</option>
@@ -99,7 +99,7 @@
 
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-3 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Suítes</b></label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
+                                <select data-action="{{route('api.suites')}}" class="selectpicker" name="filter_suites" data-index="6" id="suites" title="Escolha...">
                                     <option value="">0</option>
                                     <option value="">1</option>
                                     <option value="">2</option>
@@ -110,7 +110,7 @@
 
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-3 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Banheiros</b></label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
+                                <select data-action="{{route('api.bathrooms')}}" class="selectpicker" name="filter_bathrooms" data-index="7" id="bathrooms" title="Escolha...">
                                     <option value="">1</option>
                                     <option value="">2</option>
                                     <option value="">3</option>
@@ -120,7 +120,7 @@
 
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-3 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Garagem</b></label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
+                                <select data-action="{{route('api.garage')}}" class="selectpicker" name="filter_garage" data-index="8" id="garage" title="Escolha...">
                                     <option value="">0</option>
                                     <option value="">1</option>
                                     <option value="">2</option>
@@ -133,7 +133,7 @@
                         <div class="row mt-3">
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-6 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Preço Base</b></label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
+                                <select data-action="{{route('api.price.base')}}" class="selectpicker" name="filter_price_min" data-index="9" id="price_min" title="Escolha...">
                                     <option value="">A partir de R$ 100.000,00</option>
                                     <option value="">2</option>
                                     <option value="">3</option>
@@ -143,7 +143,7 @@
 
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-6 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Preço Limite</b></label>
-                                <select class="selectpicker" name="bedrooms" id="bedrooms" title="Escolha...">
+                                <select data-action="{{route('api.price.limit')}}" class="selectpicker" name="filter_price_max" data-index="10" id="price_max" title="Escolha...">
                                     <option value="">Até R$ 1.000.000,00</option>
                                     <option value="">2</option>
                                     <option value="">3</option>
@@ -238,114 +238,53 @@
             </header>
 
             <div class="row">
-
-                <div class="col-12 col-md-6 col-lg-4 mb-4">
-                    <article class="card main_properties_item">
-                        <div class="img-responsive-16by9">
-                            <a href="">
-                                <img src="properties/1/5a3571ab-4d76-466f-8246-eff8cb98cedd.jpg" class="card-img-top"
-                                     alt="">
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <h2><a href="" class="text-front">Linda Casa no Campeche com vista para o Morro do Lampião</a>
-                            </h2>
-                            <p class="main_properties_item_category">Imóvel Residencial</p>
-                            <p class="main_properties_item_type">Casa - Campeche <i
-                                    class="icon-location-arrow icon-notext"></i></p>
-                            <p class="main_properties_price text-front">R$ 1.500,00/mês</p>
-                            <a href="" class="btn btn-front btn-block">Ver Imóvel</a>
-                        </div>
-                        <div class="card-footer d-flex">
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/bed.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">4</p>
+                @foreach($propertiesSale as $property)
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <article class="card main_properties_item">
+                            <div class="img-responsive-16by9">
+                                <a href="{{ route('web.rent.property', ['slug' => $property->slug]) }}">
+                                    <img src="{{ $property->cover() }}" class="card-img-top"
+                                         alt="">
+                                </a>
                             </div>
-
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/garage.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">2</p>
+                            <div class="card-body">
+                                <h2>
+                                    <a href="{{ route('web.rent.property', ['slug' => $property->slug]) }}"
+                                       class="text-front">
+                                        {{ $property->title  }}
+                                    </a>
+                                </h2>
+                                <p class="main_properties_item_category">{{ $property->category }}</p>
+                                <p class="main_properties_item_type"
+                                   title="{{ $property->type }} - {{ $property->neighborhood }} ">{{ $property->type }}
+                                    - {{ $property->neighborhood }}
+                                    <i class="icon-location-arrow icon-notext"></i></p>
+                                <p class="main_properties_price text-front">R$ {{ $property->sale_price }}</p>
+                                <a href="{{ route('web.rent.property', ['slug' => $property->slug]) }}"
+                                   class="btn btn-front btn-block">Ver Imóvel</a>
                             </div>
+                            <div class="card-footer d-flex">
+                                <div class="main_properties_features col-4 text-center">
+                                    <img src="{{ asset('frontend/assets/images/icons/bed.png') }}" class="img-fluid"
+                                         alt="">
+                                    <p class="text-muted">{{ $property->bedrooms }}</p>
+                                </div>
 
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/util-area.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">1500 m&sup2;</p>
-                            </div>
-                        </div>
-                    </article>
-                </div>
+                                <div class="main_properties_features col-4 text-center">
+                                    <img src="{{ asset('frontend/assets/images/icons/garage.png') }}" class="img-fluid"
+                                         alt="">
+                                    <p class="text-muted">{{ $property->garage }}</p>
+                                </div>
 
-                <div class="d-none d-md-block col-md-6 col-lg-4 mb-4">
-                    <article class="card main_properties_item">
-                        <div class="img-responsive-16by9">
-                            <a href="">
-                                <img src="properties/2/a56fc386-3790-4e98-a72c-3b09d24adecd.jpg" class="card-img-top"
-                                     alt="">
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <h2><a href="" class="text-front">Linda Casa no Campeche com vista para o Morro do Lampião</a>
-                            </h2>
-                            <p class="main_properties_item_category">Imóvel Residencial</p>
-                            <p class="main_properties_item_type">Casa - Campeche <i
-                                    class="icon-location-arrow icon-notext"></i></p>
-                            <p class="main_properties_price text-front">R$ 1.500,00/mês</p>
-                            <a href="" class="btn btn-front btn-block">Ver Imóvel</a>
-                        </div>
-                        <div class="card-footer d-flex">
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/bed.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">4</p>
+                                <div class="main_properties_features col-4 text-center">
+                                    <img src="{{ asset('frontend/assets/images/icons/util-area.png') }}"
+                                         class="img-fluid" alt="">
+                                    <p class="text-muted">{{ $property->area_util }} m&sup2;</p>
+                                </div>
                             </div>
-
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/garage.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">2</p>
-                            </div>
-
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/util-area.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">1500 m&sup2;</p>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="d-none d-lg-block col-lg-4 mb-4">
-                    <article class="card main_properties_item">
-                        <div class="img-responsive-16by9">
-                            <a href="">
-                                <img src="properties/3/667d07e1-c0ac-4e3b-b450-4bc9bcc9bffb.jpg" class="card-img-top"
-                                     alt="">
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <h2><a href="" class="text-front">Linda Casa no Campeche com vista para o Morro do Lampião</a>
-                            </h2>
-                            <p class="main_properties_item_category">Imóvel Residencial</p>
-                            <p class="main_properties_item_type">Casa - Campeche <i
-                                    class="icon-location-arrow icon-notext"></i></p>
-                            <p class="main_properties_price text-front">R$ 1.500,00/mês</p>
-                            <a href="" class="btn btn-front btn-block">Ver Imóvel</a>
-                        </div>
-                        <div class="card-footer d-flex">
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/bed.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">4</p>
-                            </div>
-
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/garage.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">2</p>
-                            </div>
-
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/util-area.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">1500 m&sup2;</p>
-                            </div>
-                        </div>
-                    </article>
-                </div>
+                        </article>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -358,115 +297,53 @@
             </header>
 
             <div class="row">
-
-                <div class="col-12 col-md-6 col-lg-4 mb-4">
-                    <article class="card main_properties_item">
-                        <div class="img-responsive-16by9">
-                            <a href="">
-                                <img src="properties/4/3d656134-3760-4c9a-af1a-503301acc0be.jpg" class="card-img-top"
-                                     alt="">
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <h2><a href="" class="text-front">Linda Casa no Campeche com vista para o Morro do Lampião</a>
-                            </h2>
-                            <p class="main_properties_item_category">Imóvel Residencial</p>
-                            <p class="main_properties_item_type">Casa - Campeche <i
-                                    class="icon-location-arrow icon-notext"></i></p>
-                            <p class="main_properties_price text-front">R$ 1.500,00/mês</p>
-                            <a href="" class="btn btn-front btn-block">Ver Imóvel</a>
-                        </div>
-                        <div class="card-footer d-flex">
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/bed.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">4</p>
+                @foreach($propertiesRent as $property)
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <article class="card main_properties_item">
+                            <div class="img-responsive-16by9">
+                                <a href="{{ route('web.rent.property', ['slug' => $property->slug]) }}">
+                                    <img src="{{ $property->cover() }}" class="card-img-top"
+                                         alt="">
+                                </a>
                             </div>
-
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/garage.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">2</p>
+                            <div class="card-body">
+                                <h2>
+                                    <a href="{{ route('web.rent.property', ['slug' => $property->slug]) }}"
+                                       class="text-front">
+                                        {{ $property->title  }}
+                                    </a>
+                                </h2>
+                                <p class="main_properties_item_category">{{ $property->category }}</p>
+                                <p class="main_properties_item_type"
+                                   title="{{ $property->type }} - {{ $property->neighborhood }} ">{{ $property->type }}
+                                    - {{ $property->neighborhood }}
+                                    <i class="icon-location-arrow icon-notext"></i></p>
+                                <p class="main_properties_price text-front">R$ {{ $property->rent_price }}</p>
+                                <a href="{{ route('web.rent.property', ['slug' => $property->slug]) }}"
+                                   class="btn btn-front btn-block">Ver Imóvel</a>
                             </div>
+                            <div class="card-footer d-flex">
+                                <div class="main_properties_features col-4 text-center">
+                                    <img src="{{ asset('frontend/assets/images/icons/bed.png') }}" class="img-fluid"
+                                         alt="">
+                                    <p class="text-muted">{{ $property->bedrooms }}</p>
+                                </div>
 
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/util-area.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">1500 m&sup2;</p>
+                                <div class="main_properties_features col-4 text-center">
+                                    <img src="{{ asset('frontend/assets/images/icons/garage.png') }}" class="img-fluid"
+                                         alt="">
+                                    <p class="text-muted">{{ $property->garage }}</p>
+                                </div>
+
+                                <div class="main_properties_features col-4 text-center">
+                                    <img src="{{ asset('frontend/assets/images/icons/util-area.png') }}"
+                                         class="img-fluid" alt="">
+                                    <p class="text-muted">{{ $property->area_util }} m&sup2;</p>
+                                </div>
                             </div>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="d-none d-md-block col-md-6 col-lg-4 mb-4">
-                    <article class="card main_properties_item">
-                        <div class="img-responsive-16by9">
-                            <a href="">
-                                <img src="properties/5/39e47814-f0d8-4bb5-8508-1622096d1f4d.jpg" class="card-img-top"
-                                     alt="">
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <h2><a href="" class="text-front">Linda Casa no Campeche com vista para o Morro do Lampião</a>
-                            </h2>
-                            <p class="main_properties_item_category">Imóvel Residencial</p>
-                            <p class="main_properties_item_type">Casa - Campeche <i
-                                    class="icon-location-arrow icon-notext"></i></p>
-                            <p class="main_properties_price text-front">R$ 1.500,00/mês</p>
-                            <a href="" class="btn btn-front btn-block">Ver Imóvel</a>
-                        </div>
-                        <div class="card-footer d-flex">
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/bed.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">4</p>
-                            </div>
-
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/garage.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">2</p>
-                            </div>
-
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/util-area.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">1500 m&sup2;</p>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="d-none d-lg-block col-lg-4 mb-4">
-                    <article class="card main_properties_item">
-                        <div class="img-responsive-16by9">
-                            <a href="">
-                                <img src="properties/5/8771b309-8314-4023-89a8-1f1b01165075.jpg" class="card-img-top"
-                                     alt="">
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <h2><a href="" class="text-front">Linda Casa no Campeche com vista para o Morro do Lampião</a>
-                            </h2>
-                            <p class="main_properties_item_category">Imóvel Residencial</p>
-                            <p class="main_properties_item_type">Casa - Campeche <i
-                                    class="icon-location-arrow icon-notext"></i></p>
-                            <p class="main_properties_price text-front">R$ 1.500,00/mês</p>
-                            <a href="" class="btn btn-front btn-block">Ver Imóvel</a>
-                        </div>
-                        <div class="card-footer d-flex">
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/bed.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">4</p>
-                            </div>
-
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/garage.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">2</p>
-                            </div>
-
-                            <div class="main_properties_features col-4 text-center">
-                                <img src="{{ asset('frontend/assets/images/icons/util-area.png') }}" class="img-fluid" alt="">
-                                <p class="text-muted">1500 m&sup2;</p>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
+                        </article>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
