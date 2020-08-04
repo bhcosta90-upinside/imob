@@ -17,6 +17,7 @@ Route::group([
     'namespace' => 'Web',
     'as' => 'api.'
 ], function(){
+    Route::post('filtro', 'ApiController@filter')->name('filter');
     Route::post('search', 'ApiController@search')->name('search');
     Route::post('category', 'ApiController@category')->name('category');
     Route::post('type', 'ApiController@type')->name('type');
@@ -36,6 +37,17 @@ Route::group([
      * Página inicial
      */
     Route::get('/', 'WebController@home')->name('home');
+
+    /*
+     * Página destaque
+     */
+    Route::get('/destaque', 'WebController@spotlight')->name('spotlight');
+
+    /**
+     * Experiencias
+     */
+    Route::get('/experiencias', 'WebController@experience')->name('experience');
+    Route::get('/experiencias/{slug}', 'WebController@experienceCategory')->name('experience.category');
 
     /**
      * Contato
@@ -57,7 +69,7 @@ Route::group([
     /**
      * Filtragem
      */
-    Route::get('/filtro', 'WebController@filter')->name('filter');
+    Route::match(['get', 'post'], '/filtro', 'WebController@filter')->name('filter');
 
     /**
      * Página de detalhes do imóvel

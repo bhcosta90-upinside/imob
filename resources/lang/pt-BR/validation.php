@@ -215,7 +215,6 @@ return [
         "spouse_occupation" => "profissão do cônjuge",
         "spouse_income" => "renda do cônjuge",
         "spouse_company_work" => "empresa do cônjuge",
-        "number" => "número",
 
         // Company
         'social_name' => 'razão social',

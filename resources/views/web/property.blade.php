@@ -47,7 +47,11 @@
 
                         <div class="main_property_price pt-4 text-muted">
                             <p class="main_property_price_small">IPTU: R$ {{ $property->tribute }} @if($property->condominium != '0,00')| Condomínio: R$ {{ $property->condominium  }} @endif</p>
-                            <p class="main_property_price_big">Valor do Aluguel: R$ {{ $property->rent_price }}/mês</p>
+                            @if(isActive('web.rent'))
+                                <p class="main_property_price_big">Valor do Aluguel: R$ {{ $property->rent_price }}/mês</p>
+                            @else
+                                <p class="main_property_price_big">Valor do Imóvel: R$ {{ $property->sale_price }}</p>
+                            @endif
                         </div>
 
                         <div class="main_property_content_description">

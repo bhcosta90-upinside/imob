@@ -311,6 +311,7 @@ class Property extends Model
         }
 
         if(empty($cover['path']) || !File::exists('../public/storage/' . $cover['path'])) {
+            \Log::info(['../public/storage/' . $cover['path']]);
             return url(asset('backend/assets/images/realty.jpeg'));
         }
 
@@ -345,6 +346,11 @@ class Property extends Model
     public function scopeRent(Builder $builder)
     {
         return $builder->where('rent', 1);
+    }
+
+    public function getUrlExperienceAttribute()
+    {
+        return str_slug($this->experience);
     }
 
     private function convertStringToDouble($param)

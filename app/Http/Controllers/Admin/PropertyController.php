@@ -88,7 +88,7 @@ class PropertyController extends Controller
     {
         return view('admin.properties.edit', compact('property') + [
             "users" => $this->getUsers(),
-        ]); 
+        ]);
     }
 
     /**
@@ -158,7 +158,7 @@ class PropertyController extends Controller
             ->get();
 
         foreach($allImage as $image) {
-            $image->cover = false;   
+            $image->cover = false;
             $image->save();
         }
 

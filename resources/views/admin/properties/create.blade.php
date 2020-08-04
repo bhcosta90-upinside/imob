@@ -390,26 +390,28 @@
         </div>
     </div>
 </section>
+@endsection
 
-<script>
-    $(function () {
-        $('input[name="files[]"]').change(function (files) {
+@section('js')
+    <script>
+        $(function () {
+            $('input[name="files[]"]').change(function (files) {
 
-            $('.content_image').text('');
+                $('.content_image').text('');
 
-            $.each(files.target.files, function (key, value) {
-                var reader = new FileReader();
-                reader.onload = function (value) {
-                    $('.content_image').append(
-                        '<div class="property_image_item">' +
-                        '<div class="embed radius" ' +
-                        'style="background-image: url(' + value.target.result + '); background-size: cover; background-position: center center;">' +
-                        '</div>' +
-                        '</div>');
-                };
-                reader.readAsDataURL(value);
+                $.each(files.target.files, function (key, value) {
+                    var reader = new FileReader();
+                    reader.onload = function (value) {
+                        $('.content_image').append(
+                            '<div class="property_image_item">' +
+                            '<div class="embed radius" ' +
+                            'style="background-image: url(' + value.target.result + '); background-size: cover; background-position: center center;">' +
+                            '</div>' +
+                            '</div>');
+                    };
+                    reader.readAsDataURL(value);
+                });
             });
         });
-    });
-</script>
+    </script>
 @endsection

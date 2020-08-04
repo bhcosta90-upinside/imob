@@ -10,26 +10,18 @@ class ApiController extends Controller
 {
     public function search(Request $request)
     {
-        session()->remove('category');
-        session()->remove('type');
-        session()->remove('neighborhood');
-        session()->remove('bedrooms');
-        session()->remove('suites');
-        session()->remove('bathrooms');
-        session()->remove('garage');
-        session()->remove('price_base');
-        session()->remove('price_limit');
+        self::clearAllData();
 
         if ($request->search === 'buy') {
             session()->put('sale', true);
             session()->remove('rent');
-            $properties = $this->createQuery('category');
+            $properties = self::createQuery('category');
         }
 
         if ($request->search === 'rent') {
             session()->put('rent', true);
             session()->remove('sale');
-            $properties = $this->createQuery('category');
+            $properties = self::createQuery('category');
         }
 
         if($properties->count()){
@@ -56,7 +48,7 @@ class ApiController extends Controller
         session()->remove('price_limit');
 
         session()->put('category', $request->search);
-        $typeProperties = $this->createQuery('type');
+        $typeProperties = self::createQuery('type');
 
         if($typeProperties->count()){
             foreach($typeProperties as $property){
@@ -81,7 +73,7 @@ class ApiController extends Controller
         session()->remove('price_limit');
 
         session()->put('type', $request->search);
-        $neighborhoodProperties = $this->createQuery('neighborhood');
+        $neighborhoodProperties = self::createQuery('neighborhood');
 
         if($neighborhoodProperties->count()){
             foreach($neighborhoodProperties as $property){
@@ -105,7 +97,7 @@ class ApiController extends Controller
         session()->remove('price_limit');
 
         session()->put('neighborhood', $request->search);
-        $bedroomsProperties = $this->createQuery('bedrooms');
+        $bedroomsProperties = self::createQuery('bedrooms');
 
         if($bedroomsProperties->count()){
             foreach($bedroomsProperties as $property){
@@ -135,7 +127,7 @@ class ApiController extends Controller
         session()->remove('price_limit');
 
         session()->put('bedrooms', $request->search);
-        $suitesProperties = $this->createQuery('suites');
+        $suitesProperties = self::createQuery('suites');
 
         if($suitesProperties->count()){
             foreach($suitesProperties as $property){
@@ -164,7 +156,7 @@ class ApiController extends Controller
         session()->remove('price_limit');
 
         session()->put('suites', $request->search);
-        $bathroomsProperties = $this->createQuery('bathrooms');
+        $bathroomsProperties = self::createQuery('bathrooms');
 
         if($bathroomsProperties->count()){
             foreach($bathroomsProperties as $property){
@@ -193,7 +185,7 @@ class ApiController extends Controller
 
         session()->put('bathrooms', $request->search);
 
-        $garageProperties = $this->createQuery('garage,garage_covered');
+        $garageProperties = self::createQuery('garage,garage_covered');
 
         if($garageProperties->count()){
             foreach($garageProperties as $property){
@@ -224,9 +216,9 @@ class ApiController extends Controller
         session()->put('garage', $request->search);
 
         if(session('sale') === true) {
-            $priceBaseProperties = $this->createQuery('sale_price as price');
+            $priceBaseProperties = self::createQuery('sale_price as price');
         } else {
-            $priceBaseProperties = $this->createQuery('rent_price as price');
+            $priceBaseProperties = self::createQuery('rent_price as price');
         }
 
         if($priceBaseProperties->count()){
@@ -249,9 +241,9 @@ class ApiController extends Controller
         session()->put('price_base', $request->search);
 
         if(session('sale') === true) {
-            $priceLimitProperties = $this->createQuery('sale_price as price');
+            $priceLimitProperties = self::createQuery('sale_price as price');
         } else {
-            $priceLimitProperties = $this->createQuery('rent_price as price');
+            $priceLimitProperties = self::createQuery('rent_price as price');
         }
 
         if($priceLimitProperties->count()){
@@ -282,7 +274,7 @@ class ApiController extends Controller
         ];
     }
 
-    public function clearAllData()
+    public static function clearAllData()
     {
         session()->remove('sale');
         session()->remove('rent');
@@ -297,7 +289,7 @@ class ApiController extends Controller
         session()->remove('price_limit');
     }
 
-    public function createQuery($field)
+    public static function createQuery($field)
     {
         $sale = session('sale');
         $rent = session('rent');
